@@ -4,10 +4,11 @@ import { ApiService } from '../services/api.service';
 import { Concert } from './models/concert.model';
 import { ConcertService } from '../services/concert.service';
 import { error } from 'console';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CurrencyPipe, DatePipe],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

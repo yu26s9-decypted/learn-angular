@@ -11,8 +11,8 @@
   @for (concert of concerts(); track concert.id) {
     <p>{{ concert.title}}</p>
     <p>{{ concert.artist.name}}</p>
-    <p>{{ concert.date }}</p>
-    <p>{{ concert.ticketPrice }}</p>
+    <p>{{ concert.date | date }}</p>
+    <p>{{ concert.ticketPrice | currency: 'USD' }}</p>
     <p>{{ concert.venue.name }}</p>
   }
 <main>
