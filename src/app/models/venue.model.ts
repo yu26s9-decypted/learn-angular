@@ -1,0 +1,7 @@
+
+export interface Venue {
+  id: number;
+  name: string;
+  city: string;
+  capacity: number;
+}
