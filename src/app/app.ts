@@ -1,6 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { Concert } from './models/concert.model';
+import { ConcertService } from '../services/concert.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +11,29 @@ import { ApiService } from '../services/api.service';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('angular-frontend-springboot-debug');
 
   private apiService = inject(ApiService);
+  private concertService = inject(ConcertService);
 
   backendMessgae = signal('');
+  concerts = signal<Concert[]>([]);
+
+  ngOnInit() {
+    this.loadUpcomingConcerts();
+  }
+
+  loadUpcomingConcerts(){
+    this.concertService.getUpcomingConcerts().subscribe({
+      next: (concerts) => {
+        this.concerts.set(concerts)
+      },
+      error: (err) => {
+        console.error('Failed to load upcoming conserts.', err)
+      }
+    });
+  }
 
   loadcheck(){
     console.log("button was clicked. start backend request")
@@ -26,6 +46,8 @@ export class App {
         console.error('Backend request failed:', err);
         this.backendMessgae.set("An error occured.")
       },
-    })
+    })    
   }
+
+   
 }

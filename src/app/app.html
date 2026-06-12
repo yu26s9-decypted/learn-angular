@@ -7,4 +7,12 @@
   (click) = "loadcheck()"
   class="bg-black text-white py-5 rounded-xl px-10 ml-5 mt-5">Click here </button>
   <p> {{ backendMessgae() }}</p>
+
+  @for (concert of concerts(); track concert.id) {
+    <p>{{ concert.title}}</p>
+    <p>{{ concert.artist.name}}</p>
+    <p>{{ concert.date }}</p>
+    <p>{{ concert.ticketPrice }}</p>
+    <p>{{ concert.venue.name }}</p>
+  }
 <main>
