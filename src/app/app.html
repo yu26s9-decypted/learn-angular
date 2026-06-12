@@ -1,18 +1,28 @@
+<main class="concert-page">
+  <section class="concert-panel">
+    <h1>Upcoming Concerts</h1>
 
+    <div class="concert-list">
+      @for (concert of concerts(); track concert.id) {
+        <article class="concert-card">
+          <div class="date-box">
+            <span>{{ concert.date | date:'yyyy' }}</span>
+            <span>{{ concert.date | date:'MMM' }}</span>
+            <strong>{{ concert.date | date:'d' }}</strong>
+          </div>
 
-<main>
-  <h1 class="text-3xl">So this is angular...</h1>
+          <div class="concert-info">
+            <p class="concert-date">{{ concert.date | date:'EEE h:mm a' }}</p>
+            <h2>{{ concert.title }}</h2>
+            <p>{{ concert.artist.name }}</p>
+            <p>{{ concert.venue.name }}</p>
+          </div>
 
-  <button 
-  (click) = "loadcheck()"
-  class="bg-black text-white py-5 rounded-xl px-10 ml-5 mt-5">Click here </button>
-  <p> {{ backendMessgae() }}</p>
-
-  @for (concert of concerts(); track concert.id) {
-    <p>{{ concert.title}}</p>
-    <p>{{ concert.artist.name}}</p>
-    <p>{{ concert.date | date }}</p>
-    <p>{{ concert.ticketPrice | currency: 'USD' }}</p>
-    <p>{{ concert.venue.name }}</p>
-  }
-<main>
+          <p class="ticket-price">{{ concert.ticketPrice | currency:'USD' }}</p>
+        </article>
+      } @empty {
+        <p class="empty-state">No upcoming concerts found.</p>
+      }
+    </div>
+  </section>
+</main>

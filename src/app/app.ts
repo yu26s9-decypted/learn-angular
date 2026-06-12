@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { Concert } from './models/concert.model';
 import { ConcertService } from '../services/concert.service';
-import { error } from 'console';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
